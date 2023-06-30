@@ -1,0 +1,23 @@
+<div [formGroup]="form" className="flex flex-col">
+  <div class="mb-2">
+    <label>{{ label }}</label>
+  </div>
+  <div>
+    <select
+      [formControlName]="controlName"
+      class="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none"
+      [class.border-red-500]="isInvalid()"
+      [disabled]="isDisabled"
+      (change)="changeEvent.emit($event)"
+      >
+
+      <!-- (change)="change($event)" -->
+      <option *ngFor="let ele of options" [value]="ele?.value">
+        {{ ele?.label }}
+      </option>
+    </select>
+  </div>
+  <div *ngIf="isInvalid()" class="text-red-500 ml-2">
+    {{ errorMessage }}
+  </div>
+</div>

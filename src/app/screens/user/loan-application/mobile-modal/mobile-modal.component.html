@@ -1,0 +1,19 @@
+<app-modal>
+  <form [formGroup]="mobileForm" (ngSubmit)="onSubmit()">
+    <div class="bg-gray-100 rounded shadow-lg">
+      <div class="p-10 bg-white rounded">
+        <app-input
+          [form]="mobileForm"
+          [controlName]="'mobile'"
+          [label]="'Mobile no'"
+          [errorMessage]="getErrorMessage()"
+          [submitted]="submitted"
+        ></app-input>
+
+        <div class="mt-5 flex justify-center">
+          <app-button type="submit" label="Submit"></app-button>
+        </div>
+      </div>
+    </div>
+  </form>
+</app-modal>

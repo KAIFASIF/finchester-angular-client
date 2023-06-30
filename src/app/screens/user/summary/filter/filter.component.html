@@ -1,0 +1,45 @@
+<div class="p-2">
+  <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-3 gap-2">
+      <div
+        class="grid grid-cols-3 gap-2 bg-white rounded col-span-2 grid-span-3"
+      >
+        <div *ngFor="let field of formFields">
+          <app-input
+            [form]="filterForm"
+            [controlName]="field?.name"
+            [placeholder]="field?.placeholder"
+            [type]="field?.type"
+            [value]="
+              field?.name === 'search'
+                ? search
+                : field?.name === 'startDate'
+                ? startDate
+                : endDate
+            "
+            [submitted]="submitted"
+            [errorMessage]="getErrorMessage(field)"
+            (inputChanged)="onInputChanged($event)"
+          ></app-input>
+        </div>
+      </div>
+      <div class="flex mt-2">
+        <div>
+          <app-button
+            label="Clear"
+            (onClick)="handleClearFilters()"
+          ></app-button>
+        </div>
+        <div class="ml-2">
+          <app-button
+            label="Reset"
+            (onClick)="handleReset()"
+          ></app-button>
+        </div>
+        <div class="ml-2">
+          <app-button [type]="'submit'" label="Submit"></app-button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

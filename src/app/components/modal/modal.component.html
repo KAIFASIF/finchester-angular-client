@@ -1,0 +1,12 @@
+<div
+  class="fixed inset-0 z-20 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center"
+>
+  <div class="flex flex-col">
+    <div class="flex justify-end cursor-pointer" *ngIf="showCloseBtn">
+      <button (click)="closeModal()">x</button>
+    </div>
+    <div class="">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<form [formGroup]="bankForm" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-4 gap-4 p-5 bg-white rounded">
+    <div *ngFor="let field of formFields">
+      <ng-container [ngSwitch]="field?.type">
+        <ng-container *ngSwitchCase="'text'">
+          <app-input
+            [form]="bankForm"
+            [controlName]="field?.name"
+            [label]="field?.label"
+            [value]="field?.value"
+            [errorMessage]="getErrorMessage(field)"
+            [submitted]="submitted"
+            (inputChanged)="
+              field?.name === 'panNo'
+                ? capitalizeInput($event)
+                : field?.name === 'ifscCode'
+                ? fetchBankDetails($event)
+                : null
+            "
+          ></app-input>
+        </ng-container>
+        <ng-container *ngSwitchCase="'select'">
+          <app-select
+            [form]="bankForm"
+            [controlName]="field?.name"
+            [label]="field?.label"
+            [options]="field?.options"
+            [errorMessage]="getErrorMessage(field)"
+            [submitted]="submitted"
+            (changeEvent)="
+              field?.onChange
+                ? handleDependentFields(field?.name, $event?.target?.value)
+                : null
+            "
+          >
+          </app-select>
+        </ng-container>
+        <ng-container *ngSwitchCase="'radio'">
+          <app-radio
+            [form]="bankForm"
+            [controlName]="field?.name"
+            [label]="field?.label"
+            [options]="field?.options"
+            [errorMessage]="getErrorMessage(field)"
+            [submitted]="submitted"
+            (changeEvent)="
+              field?.onChange
+                ? handleDependentFields(field?.name, $event)
+                : null
+            "
+          ></app-radio>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+  <div class="flex justify-start p-5">
+    <app-button type="submit" label="Next" [disabled]="disabled"></app-button>
+  </div>
+</form>

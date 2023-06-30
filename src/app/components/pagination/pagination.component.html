@@ -1,0 +1,46 @@
+<div class="flex justify-end items-center" *ngIf="count > 0">
+  <div>
+    <select
+      class="border outline-none rounded px-2 py-1"
+      [(ngModel)]="size"
+      (change)="onSizeChange()"
+    >
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+    </select>
+  </div>
+
+  <div class="flex items-center ml-5">
+    <button
+      class="cursor-pointer mr-5"
+      (click)="hideLeftNumbers()"
+      [class.hidden]="startIndex === 0"
+    >
+      <i class="fa-solid fa-circle-chevron-left text-black text-xl hover:text-green-400"></i>
+    </button>
+
+    <ng-container *ngIf="visiblePages.length > 0">
+      <ng-container *ngFor="let page of visiblePages">
+        <a
+          class="cursor-pointer mx-2 rounded-full hover:bg-green-200 py-2 px-4"
+          [class.font-bold]="index === page"
+          (click)="onPageChange(page)"
+        >
+          {{ page }}
+        </a>
+      </ng-container>
+    </ng-container>
+
+    <button
+      class="cursor-pointer ml-5"
+      (click)="hideRightNumbers()"
+      [class.hidden]="startIndex + 5 >= totalPages.length"
+    >
+      <i
+        class="fa-solid fa-circle-chevron-right text-black text-xl hover:text-green-400"
+      ></i>
+    </button>
+  </div>
+</div>

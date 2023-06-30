@@ -1,0 +1,25 @@
+
+<app-loader [loader]="loader"></app-loader>
+<app-toaster [message]="message" [severity]="severity"></app-toaster>
+<form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+  <div class="flex justify-center place-items-center bg-gray-200 h-screen">
+    <div class="w-[25%] bg-white shadow-lg p-10 rounded">
+      <div class="grid grid-cols-1 gap-y-7">
+        <div *ngFor="let field of formFields">
+          <app-input
+            [form]="signinForm"
+            [controlName]="field?.name"
+            [label]="field?.label"
+            [errorMessage]="getErrorMessage(field)"
+            [submitted]="submitted"
+            [type]="field?.type"
+            [value]="field?.value"
+          ></app-input>
+        </div>
+      </div>
+      <div class="mt-5">
+        <app-button type="submit" label="Submit"></app-button>
+      </div>
+    </div>
+  </div>
+</form>

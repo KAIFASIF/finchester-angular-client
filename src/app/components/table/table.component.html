@@ -1,0 +1,32 @@
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="w-full text-sm text-left">
+          <thead
+            class="text-gray-400 sticky top-0 bg-gray-100 dark:bg-gray-400 dark:text-gray-400"
+          >
+            <tr
+              class="px-6 py-3 text-md font-semibold text-black bg-zinc-700 dark:text-white"
+            >
+              <th *ngFor="let ele of headers" scope="col" class="px-6 py-4">
+                {{ ele }}
+              </th>
+            </tr>
+          </thead>
+          <ng-content *ngIf="tableData.length > 0"></ng-content>
+          <tbody *ngIf="tableData.length === 0">
+            <tr>
+              <td colspan="100" class="text-center p-5">
+                <h1 class="text-lg">Oops.. looks like there is no data</h1>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="mt-5 p-2">
+          <!-- <app-pagination ></app-pagination> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

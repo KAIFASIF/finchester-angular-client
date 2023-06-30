@@ -1,0 +1,51 @@
+<app-loader [loader]="loader"></app-loader>
+<app-toaster [message]="message" [severity]="severity"></app-toaster>
+
+<div class="p-10 bg-gray-200 ">
+  <div class="p-5 bg-white">
+    <app-navbar></app-navbar>
+    <div class="flex justify-end">
+      <app-button
+        label="Add application"
+        (click)="handleNewApplication()"
+      ></app-button>
+
+    </div>
+    <div class="mt-4 p-5">
+      <app-filter
+        (filterEvent)="handleFilter()"
+        (handleToaster)="handleToaster($event)"
+        (inputChanged)="onInputChanged($event)"
+        (clearEvent)="clearFields()"
+        (resetEvent)="resetFields()"
+        [search]="search"
+        [startDate]="startDate"
+        [endDate]="endDate"
+        [size]="size"
+        [page]="page"
+        [submitted]="submitted"
+      ></app-filter>
+    </div>
+    <div class="mt-4">
+      <app-loan-counts [statusCounts]="statusCounts"></app-loan-counts>
+    </div>
+    <div class="mt-5">
+      <app-summary-table
+        [headers]="headers"
+        [tableData]="tableData"
+      ></app-summary-table>
+
+      <app-pagination
+        [count]="count"
+        [search]="search"
+        [startDate]="startDate"
+        [endDate]="endDate"
+        [size]="size"
+        [page]="page"
+        (updateSize)="updateSize($event)"
+        (updatePage)="updatePage($event)"
+        (fetchUserLoans)="fetchUserLoans($event)"
+      ></app-pagination>
+    </div>
+  </div>
+</div>

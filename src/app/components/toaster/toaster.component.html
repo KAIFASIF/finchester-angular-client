@@ -1,0 +1,16 @@
+<div
+  *ngIf="isVisible"
+  class="fixed inset-0 z-20 bg-white bg-opacity-0 flex justify-center items-center transition-opacity duration-500ms"
+>
+  <div class="fixed inset-x-0 flex justify-center top-20 z-50">
+    <div
+      [ngClass]="{
+        'bg-green-500': severity === 'success',
+        'bg-red-500': severity === 'error'
+      }"
+      class="px-4 py-2 text-white rounded shadow"
+    >
+      {{ message }}
+    </div>
+  </div>
+</div>

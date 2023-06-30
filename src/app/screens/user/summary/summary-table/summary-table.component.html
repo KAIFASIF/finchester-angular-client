@@ -1,0 +1,50 @@
+<app-table [headers]="headers" [tableData]="tableData">
+  <tbody>
+    <tr
+      *ngFor="let ele of tableData"
+      class="bg-white border-b-2 dark:bg-gray-100 dark:border-gray-50 dark:hover:bg-slate-200"
+    >
+      <td
+        class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap dark:text-black"
+      >
+        {{ ele?.profileMobile }}
+      </td>
+      <td
+        class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap dark:text-black"
+      >
+        {{ ele?.username }}
+      </td>
+      <td
+        class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap dark:text-black"
+      >
+        {{ ele?.profileEmail }}
+      </td>
+      <td
+        class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap dark:text-black"
+      >
+        {{ ele?.profileEmail }}
+      </td>
+      <td
+        class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap dark:text-black"
+      >
+        {{ ele?.loan?.loanId }}
+      </td>
+      <td
+        class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap dark:text-black"
+      >
+        {{ ele?.loan?.loanAmount }}
+      </td>
+      <td
+        class="px-6 py-4 font-medium text-gray-400  cursor-pointer whitespace-nowrap dark:text-black"
+        (click)="naviagteToLoanApplication(ele?.loan?.loanId , ele?.loan?.status)"
+      >
+        {{ ele?.loan?.status }}
+      </td>
+      <td
+        class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap dark:text-black"
+      >
+        Action
+      </td>
+    </tr>
+  </tbody>
+</app-table>
